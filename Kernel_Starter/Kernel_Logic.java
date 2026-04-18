@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -10,11 +9,21 @@ public class Kernel_Logic {
     private static int MAX_OS_VARS = 64; // maximum vars for the kernel OS
     //constant codes will be set here
     private static String OS_INFO = "KERNEL OS NONE: CONST";
-    public static void main(String[] args) {
-        
+    public static void start_kernel_logic() {
+        Scanner start_up = new Scanner(System.in);
+        System.out.print("> Start Boot?> ");
+        String startup = start_up.nextLine();
+        if (startup.equals("yes")) {
+            System.out.print("");
+        }
+        else {
+            System.out.println("[INFO] [OS] Bootloader halted due to input user startup");
+            System.exit(1);
+        }
         kernelV();
         bootkernel();
         log_kernel();
+        operating_kernel();
         final_OS();
     }
     public static void kernelV() { // to verify the kernel before startup of software and hardware
@@ -36,8 +45,8 @@ public class Kernel_Logic {
         // the bytes server as memory usage locally
         byte min = -128;
         byte max = 127;
-        System.out.print("Minimum Byte: -128\n");
-        System.out.print("Maximum Byte: 128\n");
+        System.out.print("Minimum Byte: " + min + "\n");
+        System.out.print("Maximum Byte: " + max + "\n");
         String mistmatch_exception = "Kernel JavaLogic";
         if (mistmatch_exception.equals("Kernel JavaLogic")) {
             System.out.print(""); // Proceed
@@ -58,13 +67,13 @@ public class Kernel_Logic {
             writer.write("// Wow!\n");
             writer.write("Version: Kernel One (Preview)\n");
             writer.write("OS Ver: Official in Github");
-            writer. write("Kernel: API NONE, RUNNING: OK");
+            writer.write("Kernel: API NONE, RUNNING: OK");
             writer.write("\n");
             writer.write("[SYS] Boot starting up\n");
             writer.write("[OS] Bytes processed\n");
             writer.write("[INFO] Did not find any mismatch so good.\n");
             writer.write("[SYS] Processing final statics for setting:. Done...\n");
-            writer.write("[OS] Operating Kernel for Verifying Kernel starting...\n");            
+            writer.write("[OS] Operating Kernel for Verifying Kernel starting...\n");           
             writer.write("-End of log\n");
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,6 +85,16 @@ public class Kernel_Logic {
         // OS will be optimized here as the bootloader is done.
         //contains code that is constant throughout the application but dosen't share function of the code
         int OS = 255; // constant
+        try (FileWriter writer = new FileWriter("kernelOs.log")) {
+            // File for kernel os
+            // this is where api and functions are stored
+            writer.write("===== KERNEL OS // wow\n");
+            writer.write("[OS] Kernel Constant OS bytes set to: " + OS + "\n");
+            writer.write("[OS] Max Variable for OS is set to" + const_settings.MAX_VARS_OS + "\n");
+            writer.write("[OS] OS Version of Kernel Settings set to: " + const_settings.OS_VER + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private static class const_settings {
         // constant settings
@@ -90,6 +109,7 @@ public class Kernel_Logic {
         // official one that the system must access
         // this error is only for the Kernel Side
         // User may only get this when the Kernel fails
+        // It is read only
         static final String errmessage = "[ERR] [OS] Kernel failed to boot by a error. Return and exited 2\n";
         static final String errsecond = "[INFO] [OS] [SYS] Please check your crash logs file to ensure what happend\n";
     }
@@ -102,6 +122,10 @@ public class Kernel_Logic {
             System.out.print("");
         }
         else {
+            String RED = "\u001B[31m";
+            String RESET = "\u001B[0m";
+            System.out.print(RED + ERR_MESSAGE.errmessage);
+            System.out.print(ERR_MESSAGE.errsecond + RESET);
             System.exit(2);
         }
         String os = "64"; // Maximum final os vars
