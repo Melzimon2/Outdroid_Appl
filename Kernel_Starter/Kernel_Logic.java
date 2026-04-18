@@ -2,6 +2,9 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Kernel_Logic {
     private static int MAX_OS_VARS = 64; // maximum vars for the kernel OS
@@ -12,6 +15,7 @@ public class Kernel_Logic {
         kernelV();
         bootkernel();
         log_kernel();
+        final_OS();
     }
     public static void kernelV() { // to verify the kernel before startup of software and hardware
         boolean mismatch_boolean = true;
@@ -60,6 +64,7 @@ public class Kernel_Logic {
             writer.write("[OS] Bytes processed\n");
             writer.write("[INFO] Did not find any mismatch so good.\n");
             writer.write("[SYS] Processing final statics for setting:. Done...\n");
+            writer.write("[OS] Operating Kernel for Verifying Kernel starting...\n");            
             writer.write("-End of log\n");
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +92,40 @@ public class Kernel_Logic {
         // User may only get this when the Kernel fails
         static final String errmessage = "[ERR] [OS] Kernel failed to boot by a error. Return and exited 2\n";
         static final String errsecond = "[INFO] [OS] [SYS] Please check your crash logs file to ensure what happend\n";
-
+    }
+    public static void final_OS() {
+        // Final Step for the Kernel
+        // Part where it is then transferred to the firmware bridge
+        // This part is critical
+        boolean final_OS = true;
+        if (final_OS) {
+            System.out.print("");
+        }
+        else {
+            System.exit(2);
+        }
+        String os = "64"; // Maximum final os vars
+        System.out.print("[OS] Loaded Maximum Vars: " + os + "\n");
+        Path dir_firmware = Paths.get("Kernel_Starter/firmware_bridge.java");
+        if (Files.exists(dir_firmware)) {
+            System.out.print("\n");
+            System.out.print("[OS] Verify and finding Firmware Bridge...");
+            // proceeds without halting
+            // OS proceeds to firmware
+            System.out.println("[OS] [SYS] Connected to Firmware Bridge!");
+        }
+        else {
+            String RED = "\u001B[31m";
+            String RESET = "\u001B[0m";
+            System.out.print(RED + "KERNEL PANIC ATTACK!" + RESET + "\n");
+            System.out.print("SYS: OK, OS: OK\n");
+            System.out.print("KRN: OK, FIRM: NO\n");
+            System.out.println("[SYS] Could not find Firmware File!");
+            System.out.println("[OS] HALT SYSTEMS IMMEDIATELY");
+            System.exit(10); // exits and halts immediately
+            //Kernel Panic Attack where it halts
+            // All other systems will be shutdown
     }
 
+   }
 }
