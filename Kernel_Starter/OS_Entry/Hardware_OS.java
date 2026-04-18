@@ -8,6 +8,5 @@ public class Hardware_OS {
         //The official settings code
         //Only accessed during Hardware optimization
         static final String setting = "SettingLibs: true";
-
     }
 }
