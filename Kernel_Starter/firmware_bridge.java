@@ -7,10 +7,9 @@ import java.io.IOException;
 
 public class firmware_bridge {
     public static void main(String[] args) {
-      Kernel_Logic.start_kernel_logic();
+      Kernel_Logic.start_kernel_logic(); 
       Path dir_kernel_connect = Paths.get("Kernel_Starter/Kernel_Logic.java");
       if (Files.exists(dir_kernel_connect)) {
-        System.out.print("hello\n");
       }
       else {
       System.exit(1);
@@ -48,6 +47,7 @@ public class firmware_bridge {
         System.out.print("");
         System.exit(4);
       }
+
     }
     private static class ERR_MES {
       static final String err_hardware = "[OS] [SYS] Couldn't find Hardware OS files! Return 4;";
