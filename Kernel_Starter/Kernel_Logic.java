@@ -29,7 +29,7 @@ public class Kernel_Logic {
     public static void kernelV() { // to verify the kernel before startup of software and hardware
         boolean mismatch_boolean = true;
         if (mismatch_boolean == true) {
-            System.out.print(""); // Proceed
+            System.out.print("[SYS] Checking for mismatch boolean...\n"); // Proceed
         }
         else {
             System.err.println("Code");
@@ -94,6 +94,17 @@ public class Kernel_Logic {
             writer.write("[OS] OS Version of Kernel Settings set to: " + const_settings.OS_VER + "\n");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        System.out.print("[OS] Kernel Operates with caution\n");
+        System.out.print("[SYS] A = OK, B = OK\n");
+        boolean internal_os_bool = true;
+        if (internal_os_bool) {
+            System.out.print("[SYS] C = OK, FINAL = OK\n");
+        }
+        else {
+            System.out.print("KERNEL FAULTY ATTACK");
+            System.err.print("[OS] C = OK when failed to bool os at FINAL = OK\n");
+            System.exit(3);
         }
     }
     private static class const_settings {

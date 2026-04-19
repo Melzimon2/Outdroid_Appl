@@ -1,4 +1,3 @@
 ===== Hardware OS =====
-[SYS] Setting libs set to: SettingLibs: true
-[OS] Hardware Version: 1
-[INFO] Starting up OS
+[SYS] Connected to Firmware Bridge!
+[OS] OS Engine is Running

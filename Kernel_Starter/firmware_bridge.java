@@ -41,6 +41,7 @@ public class firmware_bridge {
       // Checking if hardware os does exist
       // final step for the firmware bridge
       Path dir_hardware = Paths.get("Hardware_OS.java");
+      System.out.print("[OS] Appending Hardware OS\n");
       if (Files.exists(dir_hardware)) {
         System.out.print("");
       } else {
